@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour, IManager
 {
     //Based on DataManager from Chapter 12 of "Learning C# by Developing Games with Unity Sixth Edition": https://github.com/PacktPublishing/Learning-C-by-Developing-Games-with-Unity-Sixth-Edition/blob/main/Ch_13_Starter/Assets/Scripts/DataManager.cs
 
     [SerializeField] private float time;
-
+    
     private string _state;
     public string State
     {
@@ -23,12 +24,17 @@ public class DataManager : MonoBehaviour, IManager
 
         Debug.Log(_dataPath);
 
-        _textFile = _dataPath + "Save_Data.csv";
+        _textFile = _dataPath + $"Save_Data.csv";
     }
 
     void Start()
     {
         Initialize();
+
+        if (Accelerometer.current == null)
+        {
+            InputSystem.EnableDevice(Accelerometer.current);
+        }
     }
 
     public void StartDataCollecting()
