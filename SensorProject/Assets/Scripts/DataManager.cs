@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 
 public class DataManager : MonoBehaviour, IManager
 {
     //Based on DataManager from Chapter 12 of "Learning C# by Developing Games with Unity Sixth Edition": https://github.com/PacktPublishing/Learning-C-by-Developing-Games-with-Unity-Sixth-Edition/blob/main/Ch_13_Starter/Assets/Scripts/DataManager.cs
+
+    [SerializeField] private float time;
 
     private string _state;
     public string State
@@ -17,7 +16,7 @@ public class DataManager : MonoBehaviour, IManager
     
     private string _dataPath;
     private string _textFile;
-
+    
     void Awake()
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
@@ -30,6 +29,17 @@ public class DataManager : MonoBehaviour, IManager
     void Start()
     {
         Initialize();
+    }
+
+    public void StartDataCollecting()
+    {
+        float remainingTime = time;
+
+        while (remainingTime > 0)
+        {
+            UpdateTextFile();
+            remainingTime -= Time.deltaTime;
+        }
     }
 
     public void Initialize()
