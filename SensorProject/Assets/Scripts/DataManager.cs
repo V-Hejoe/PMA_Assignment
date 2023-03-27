@@ -101,7 +101,7 @@ public class DataManager : MonoBehaviour, IManager
             Debug.Log("File already exists...");
             return;
         }
-        File.WriteAllText(_textFile, "<SAVE DATA>\n\n");
+        File.WriteAllText(_textFile, "x,y,z\n\n");
         Debug.Log("New file created!");
     }
 
