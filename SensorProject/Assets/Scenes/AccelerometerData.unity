@@ -668,7 +668,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 341065257}
         m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
-        m_MethodName: StartDataCollecting
+        m_MethodName: WriteCSV
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

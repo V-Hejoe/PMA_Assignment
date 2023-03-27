@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.IO;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using TMPro;
 
-public class DataManager : MonoBehaviour, IManager
+public class DataManager : MonoBehaviour
 {
     //Based on DataManager from Chapter 12 of "Learning C# by Developing Games with Unity Sixth Edition": https://github.com/PacktPublishing/Learning-C-by-Developing-Games-with-Unity-Sixth-Edition/blob/main/Ch_13_Starter/Assets/Scripts/DataManager.cs
+    //It made six columns in stead of three.
 
     [SerializeField] private float time;
     
@@ -112,7 +115,7 @@ public class DataManager : MonoBehaviour, IManager
             Debug.Log("File doesn't exist...");
             return;
         }
-        File.AppendAllText(_textFile, $"{Input.acceleration.x},{Input.acceleration.y},{Input.acceleration.z}\n");
+        File.AppendAllText(_textFile, $"{Input.acceleration.x.ToString()},{Input.acceleration.y.ToString()},{Input.acceleration.z.ToString()}\n");
         Debug.Log("File updated successfully!");
     }
 
