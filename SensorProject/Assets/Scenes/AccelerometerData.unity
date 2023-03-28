@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c34d1617adbd7e48b68df37eaa15f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
+  time: 6
+  isCollecting: 0
 --- !u!4 &341065258
 Transform:
   m_ObjectHideFlags: 0
@@ -668,7 +669,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 341065257}
         m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
-        m_MethodName: WriteCSV
+        m_MethodName: StartDataCollecting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

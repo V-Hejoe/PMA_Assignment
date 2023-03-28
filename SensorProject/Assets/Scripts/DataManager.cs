@@ -3,6 +3,8 @@ using System.IO;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using TMPro;
+using System.Globalization;
+using System.Threading;
 
 public class DataManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class DataManager : MonoBehaviour
     //It made six columns in stead of three.
 
     [SerializeField] private float time;
+    [SerializeField] private bool isCollecting;
     
     private string _state;
     public string State
@@ -32,12 +35,18 @@ public class DataManager : MonoBehaviour
 
     void Start()
     {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
         Initialize();
+        InputSystem.EnableDevice(Accelerometer.current);        
+    }
 
-        if (Accelerometer.current == null)
+    private void FixedUpdate()
+    {
+        if (!isCollecting)
         {
-            InputSystem.EnableDevice(Accelerometer.current);
+            return;
         }
+        UpdateTextFile();
     }
 
     public void StartDataCollecting()
@@ -46,7 +55,7 @@ public class DataManager : MonoBehaviour
 
         while (remainingTime > 0)
         {
-            UpdateTextFile();
+            isCollecting = true; 
             remainingTime -= Time.deltaTime;
         }
     }
@@ -91,7 +100,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("File already exists...");
             return;
         }
-        File.WriteAllText(_textFile, "x,y,z\n\n");
+        File.WriteAllText(_textFile, "Time,x,y,z\n\n");
         Debug.Log("New file created!");
     }
 
@@ -102,7 +111,7 @@ public class DataManager : MonoBehaviour
             Debug.Log("File doesn't exist...");
             return;
         }
-        File.AppendAllText(_textFile, $"{Input.acceleration.x.ToString()},{Input.acceleration.y.ToString()},{Input.acceleration.z.ToString()}\n");
+        File.AppendAllText(_textFile, $"{Time.time},{Input.acceleration.x.ToString()},{Input.acceleration.y.ToString()},{Input.acceleration.z.ToString()}\n");
         Debug.Log("File updated successfully!");
     }
 
