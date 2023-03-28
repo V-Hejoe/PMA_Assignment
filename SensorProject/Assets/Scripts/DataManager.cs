@@ -84,19 +84,6 @@ public class DataManager : MonoBehaviour
         Debug.Log("New directory created!");
     }
 
-    public void DeleteDirectory()
-    {
-        if (!Directory.Exists(_dataPath))
-        {
-            Debug.Log("Directory doesn't exist or has already been deleted...");
-
-            return;
-        }
-        
-        Directory.Delete(_dataPath, true);
-        Debug.Log("Directory successfully deleted!");
-    }
-
     public void NewTextFile()
     {
         if (File.Exists(_textFile))
@@ -127,17 +114,5 @@ public class DataManager : MonoBehaviour
             return;
         }
         Debug.Log(File.ReadAllText(filename));
-    }
-
-    public void DeleteFile(string filename)
-    {
-        if (!File.Exists(filename))
-        {
-            Debug.Log("File doesn't exist or has already been deleted...");
-
-            return;
-        }
-        File.Delete(_textFile);
-        Debug.Log("File successfully deleted!");
     }
 }
