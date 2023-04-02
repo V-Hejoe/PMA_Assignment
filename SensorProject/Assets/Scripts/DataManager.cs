@@ -9,8 +9,7 @@ using System.Threading;
 public class DataManager : MonoBehaviour
 {
     //Based on DataManager from Chapter 12 of "Learning C# by Developing Games with Unity Sixth Edition": https://github.com/PacktPublishing/Learning-C-by-Developing-Games-with-Unity-Sixth-Edition/blob/main/Ch_13_Starter/Assets/Scripts/DataManager.cs
-    //It made six columns in stead of three.
-
+    
     [SerializeField] private float time;
     [SerializeField] private bool isCollecting;
     
